@@ -17,14 +17,15 @@ else:
 
 phone_numb = (input("Please enter ten digits of your phone number: "))
 
-if len(phone_numb) > 10 and phone_numb.isdigit():
-    print("Numer has NOT been added. You enter more than 10 digits")
-elif len(phone_numb) < 10 and phone_numb.isdigit():
-    print("Numer has NOT been added. You missed to enter some digits")
-elif len(phone_numb) == 10 and not phone_numb.isdigit():
-    print("Numer has NOT been added. Please enter ONLY digits")
+if phone_numb.isdigit():
+    if len(phone_numb) > 10:
+        print("Number has NOT been added. You enter more than 10 digits")
+    elif len(phone_numb) < 10:
+        print("Number has NOT been added. You missed to enter some digits")
+    elif len(phone_numb) == 10:
+        print("Your phone number has been added successfully")
 else:
-    print("Your phone number has been added successfully")
+    print("Number has NOT been added. Please enter ONLY digits")
 
 # Task 3
 # The name check.
