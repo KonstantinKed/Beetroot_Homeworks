@@ -1,15 +1,15 @@
 # Task 1
 # Make a program that has some sentence (a string) on input and returns a dict containing all unique words as keys and the number of occurrences as values.
 
-# text = input("Enter your text: ").strip().split()
-#
-# our_dic ={}
-# for i in text:
-#     rep = 1
-#     if text.count(i) > 1:
-#         rep += 1
-#     our_dic.update({i: rep})
-# print(our_dic)
+text = input("Enter your text: ").strip().split()
+
+our_dic ={}
+for i in text:
+    rep = 1
+    if text.count(i) > 1:
+        rep += 1
+    our_dic.update({i: rep})
+print(our_dic)
 
 # Task 2
 # Create a function which takes as input two dicts with structure mentioned above, then computes and returns the total price of stock.
