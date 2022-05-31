@@ -25,18 +25,26 @@ print (newlist, "\n", max(newlist))
 
 import random
 i = 0
-our_list_2 = []  # our_list_1 comes from the previous task!
+j = 0
+our_list_2 = []
+our_list_3 = []
+common_list = []
 while i < 10:
-    n = random.randint(0, 100)
+    n = random.randint(0, 10)
     our_list_2.append(n)
     i += 1
+while j < 10:
+    n = random.randint(0, 10)
+    our_list_3.append(n)
+    j += 1
+
 b = 0
-while b < len(our_list_2)-1:
-    if our_list_2[b] not in our_list_1:
-        our_list_1.append(our_list_2[b])
+while b < len(our_list_3)-1:
+    if our_list_2[b] in our_list_3 and our_list_2[b] not in common_list:
+        common_list.append(our_list_2[b])
     b += 1
 
-print (our_list_1, our_list_2)
+print (our_list_2, our_list_3, common_list)
 
 # Task 3
 # Extracting numbers.
