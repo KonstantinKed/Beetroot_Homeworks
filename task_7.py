@@ -3,11 +3,14 @@
 
 text = input("Enter your text: ").strip().split()
 
-our_dic ={}
+our_dic = {}
+
 for i in text:
-    rep = 1
-    if text.count(i) > 1:
-        rep += 1
+    rep = text.count(i)
+    # if text.count(i) > 1:
+    #     rep += 1
+    # else:
+    #     rep = 1
     our_dic.update({i: rep})
 print(our_dic)
 
@@ -31,12 +34,14 @@ prices = {
 def total_calc(a, b):
     total_dic = {}
     total = 1
+    total_stock = 0
     for i, j in a.items():
         for k, p in b.items():
             if i == k:
                 total = j * p
+                total_stock += total
             total_dic.update({i: total})
-    return total_dic
+    return total_stock
 print(total_calc(stock, prices))
 
 
