@@ -5,7 +5,7 @@ def arg_rules(type_: type, max_length: int, contains: list):
     def arg_rules_dec(f):
         def wrap(*args, **kwargs):
             f(*args, **kwargs)
-            text = {print(f(*args, **kwargs)) for k in args[0].split() if (lambda i, k: i in k for i in contains) and type(args[0]) is type_ and len(args[0]) <= max_length} # TO BE IMPROVED
+            text = {print(f(*args, **kwargs)) for k in args[0].split() if (lambda i, k: i in k in contains) and type(args[0]) is type_ and len(args[0]) <= max_length} # TO BE IMPROVED
             return text
         return wrap
     return arg_rules_dec
