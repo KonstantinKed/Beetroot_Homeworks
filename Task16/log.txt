@@ -1,0 +1,2 @@
+You enter wrong variable type
+Can not divide on zero
