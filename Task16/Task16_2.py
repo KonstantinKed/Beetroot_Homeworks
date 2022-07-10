@@ -1,3 +1,6 @@
+import calendar
+
+
 class Mathematician:
     def __init__(self):
         self.result = []
@@ -11,7 +14,8 @@ class Mathematician:
         print(self.result)
 
     def filter_leaps(self, result):
-        self.result = [i for i in result if i % 4 ==0]
+        # self.result = [i for i in result if i % 4 == 0 and i % 100 != 0 and i % 400 == 0]
+        self.result = [i for i in result if calendar.isleap(i)]
         print(self.result)
 
 m = Mathematician()
