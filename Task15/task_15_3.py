@@ -8,7 +8,8 @@ class TVController:
         self.N = N
 
 
-    def first_channel(self):
+    def first_channel(self, N=0):
+        self.N=N
         curr_chan = self.channels[self.N]
         print(curr_chan)
 
@@ -60,17 +61,19 @@ channels = ["BBC", "Discovery", "TV1000"]
 
 controller = TVController(channels)
 
-controller.first_channel()
-controller.last_channel()
-controller.turn_channel(1)
-controller.next_channel()
-controller.previous_channel()
-controller.previous_channel()
-controller.current_channel()
-controller.next_channel()
-controller.next_channel()
-controller.next_channel()
-controller.next_channel()
+controller.first_channel()   # BBC
+controller.last_channel()   # TV1000
+controller.turn_channel(1)   # BBC
+controller.next_channel()     #Discovery
+controller.previous_channel()  #BBC
+controller.current_channel()   #BBC
+controller.next_channel()   #Discovery
+controller.next_channel()   #TV1000
+controller.next_channel()   #BBC
+print("--------")
+controller.first_channel()  #BBC
+controller.next_channel()  #Discovery
+controller.previous_channel() #BBC
 controller.is_exist(2.5)
 controller.is_exist("BBC")
 
