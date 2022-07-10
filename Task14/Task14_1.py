@@ -4,7 +4,7 @@
 #
 def logger(func):
     def wrap(*args, **kwargs):
-        print(func.__name__, "called with", args)
+        print(func.__name__, "called with", args, kwargs)
     return wrap
 
 
@@ -12,7 +12,7 @@ def logger(func):
 def add(a, b):
     return a + b
 
-add(4, 5)
+add(4, b=5)
 
 @logger
 def square_all(*args):
