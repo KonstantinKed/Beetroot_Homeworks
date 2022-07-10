@@ -16,9 +16,9 @@ class ProductStore:
         self.amount = 0
         self.income = 0
 
-    def add(self, product, amount):
+    def add(self, product, amount: int):
         self.premium_price = round((product.price*self.rate), 3)
-        product.amount = amount
+        product.amount = int(amount)
         product.price = self.premium_price
         self.product_store.append(product)
         return self.product_store
@@ -34,18 +34,18 @@ class ProductStore:
                     product.price = product.price*((100-percent)/100)
             return (f'{product.type}\t{product.name.strip()}\t{product.amount}\t{product.price}')
 
-    def sell_product(self, product_name, amount):
+    def sell_product(self, product_name, amount: int):
 
         for product in self.product_store:
             if product.name.strip() == product_name:
-                if product.amount > amount:
+                if product.amount > int(amount):
                     print('\nSELL PRODUCT')
                     print('===================')
-                    product.amount -= amount
+                    product.amount -= int(amount)
                     self.income = amount * product.price
                 else:
                     raise ValueError("You try to sell more products than available in store")
-                return (f'{amount}\t{product.name.strip()} was sold. Remaining amount is: {product.amount}')
+                return (f'{int(amount)}\t{product.name.strip()} was sold. Remaining amount is: {product.amount}')
 
     def get_income(self):
         print('\nINCOME of ProductStore')
@@ -77,5 +77,5 @@ print(s.set_discount(p.name, 10))   # try 100 to raise ValueError
 print(s.get_product_info("Ramen"))
 print(s.sell_product("Ramenfdff", 100))
 print(s.sell_product("PlayStation 5", 5))
-print(s.sell_product("PlayStation 5", 10))  # try 16 to raise ValueError
+print(s.sell_product("PlayStation 5", 10.5))  # try 16 to raise ValueError
 print(s.get_income())
