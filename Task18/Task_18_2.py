@@ -20,8 +20,8 @@ class Boss:
     def add_workers(self, worker):
         self.workers.append(worker)
 
-    def remove_workers(self, worker):
-        self.workers.remove(worker)
+    # def remove_workers(self, worker):
+    #     self.workers.remove(worker)
 
     def __repr__(self):
         wrk_list = ''
@@ -44,7 +44,9 @@ class Worker:
     @boss.setter
     def boss(self,value):
         if isinstance(value, Boss):
+            self.__boss.workers.remove(self)
             self.__boss = value
+            self.__boss.workers.append(self)
 
 
 b1 = Boss(random.randint(1, 100), "Guido", "Promo")
@@ -75,11 +77,10 @@ print(b3)
 print('----------WORKER CHANGES BOSS----------')
 print(w1.boss.name,f'- current boss of {w1.name}')
 w1.boss = b3
+
 # QUESTION--> HOW CAN WE ADJUST THE LIST ONCE WE DECIDE LOCALLY CHANGE THE BOOS OF THE WORKER.
 print(w1.boss.name,f'- new boss of {w1.name}')
 print('----UPDATED LIST OF WORKERS PER BOSS-----')
-b1.remove_workers(w1) # METHOD TO REMOVE WORKER FROM BOSS
-b3.add_workers(w1)
 print(b1)
 print(b2)
 print(b3)
