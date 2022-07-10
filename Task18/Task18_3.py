@@ -30,7 +30,7 @@ class TypeDecorators:
         def wrap(*args,**kwargs):
             try:
                 print(func.__name__, 'turns str to bool')
-                if args[0] == 'True' or args[0] == 'False':
+                if args[0] == 'True' or args[0] == 'False' or args[0] == 1 or args[0] == 0:
                     result = bool(func(*args, **kwargs))
                 else:
                     result = "Impossible operation"
@@ -77,6 +77,10 @@ print(do_something('True'))
 print(type(do_something('True')))
 print(do_something('True'))
 print(type(do_something('True')))
+print(do_something(1))
+print(type(do_something(1)))
+print(do_something(0))
+print(type(do_something(0)))
 print(do_something('AAA'))
 print(type(do_something('AAA')))
 print('-----TO FLOAT-----')
