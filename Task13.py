@@ -14,6 +14,18 @@ def count_par():
 count_par()
 print(count_par.__code__.co_nlocals)
 
+#Using dir offered by Viktoria :)
+
+def count_local_variables(l):
+    a = 1
+    b = "2"
+    c = 3
+    print(dir())
+    print(len(dir()))
+
+count_local_variables(1)
+
+
 # Task 2
 # Write a Python program to access a function inside a function (Tips: use function, which returns another function)
 
@@ -46,12 +58,11 @@ def remove_negatives(nums):
 def choose_func(nums: list, func1, func2):
     lists = [i for i in nums if i > 0]
     if len(lists) == len(nums):
-        print(square_nums(lists))
+        print(func1(lists))
     else:
-        print(remove_negatives(nums))
+        print(func2(nums))
 
 choose_func(nums1, square_nums, remove_negatives)
 choose_func(nums2, square_nums, remove_negatives)
-
 
 
