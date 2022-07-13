@@ -30,8 +30,11 @@ class Queue_UnorderedList:
             while current.get_next() is not None:
                 previous = current
                 current = current.get_next()
-            previous.set_next(None)
-            return current.get_data()
+            if previous == None:
+                self._head = current.get_next()
+            else:
+                previous.set_next(None)
+                return current.get_data()
 
     def size(self):
         current = self._head
@@ -67,6 +70,6 @@ if __name__ == "__main__":
     print(my_list.dequeue())
     print(my_list)
     print(my_list.is_empty())
-    # print(my_list.dequeue())  # QUESTION!!!!!!! HOW TO REMOVE THE LAST ELEMENT IF PREVIOUS FOR IT IS NONE
+    print(my_list.dequeue())  # QUESTION!!!!!!! HOW TO REMOVE THE LAST ELEMENT IF PREVIOUS FOR IT IS NONE
     print(my_list)
 
