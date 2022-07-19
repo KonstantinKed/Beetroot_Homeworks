@@ -65,10 +65,14 @@ def evaluate(parse_tree):
 
     left_c = parse_tree.get_left_child()
     right_c = parse_tree.get_right_child()
+    core = parse_tree.get_root_val()
 
     if left_c and right_c:
         fn = operates[parse_tree.get_root_val()]
         return fn(evaluate(left_c), evaluate(right_c))
+    if left_c and right_c == None:  # to catch id only two paramtrs i.e. for NOT TRUE
+        fn = operates[parse_tree.get_left_child()]
+        return fn(evaluate(left_c))
     else:
         return parse_tree.get_root_val()
 
@@ -76,9 +80,9 @@ def evaluate(parse_tree):
 def print_exp(tree: BinaryTree) -> str:
     s_val = ""
     if tree:
-        s_val = '(' + print_exp(tree.get_left_child())
-        s_val = s_val + str(tree.get_root_val())
-        s_val = s_val + print_exp(tree.get_right_child())+')'
+        s_val = print_exp(tree.get_left_child())
+        s_val = s_val + " " + str(tree.get_root_val())
+        s_val = s_val + print_exp(tree.get_right_child())
     return s_val
 
 
