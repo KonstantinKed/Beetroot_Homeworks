@@ -38,7 +38,16 @@ def build_parse_tree(math_exp: str) -> BinaryTree:
             stack.push(current_tree)
             current_tree = current_tree.get_left_child()
 
-        elif i in ['and', 'or', 'not']:
+        elif i in ['and', 'or']:
+            current_tree.set_root_val(i)
+            current_tree.insert_right('')
+            stack.push(current_tree)
+            current_tree = current_tree.get_right_child()
+
+        elif i == 'not':
+            current_tree.insert_left(None)
+            parent = stack.pop()
+            current_tree = parent
             current_tree.set_root_val(i)
             current_tree.insert_right('')
             stack.push(current_tree)
@@ -53,7 +62,6 @@ def build_parse_tree(math_exp: str) -> BinaryTree:
                 current_tree.set_root_val((i))
                 parent = stack.pop()
                 current_tree = parent
-
             except ValueError:
                 raise ValueError("token '{}' is not a valid integer".format(i))
 
@@ -65,14 +73,13 @@ def evaluate(parse_tree):
 
     left_c = parse_tree.get_left_child()
     right_c = parse_tree.get_right_child()
-    core = parse_tree.get_root_val()
 
-    if left_c and right_c:
+    if left_c.get_root_val() != '' and right_c:
         fn = operates[parse_tree.get_root_val()]
         return fn(evaluate(left_c), evaluate(right_c))
-    if left_c and right_c == None:  # to catch id only two paramtrs i.e. for NOT TRUE
-        fn = operates[parse_tree.get_left_child()]
-        return fn(evaluate(left_c))
+    if left_c == '' and right_c:  # to catch if only two paramtrs i.e. for NOT TRUE
+        fn = operates[parse_tree.get_root_val()]
+        return fn(evaluate(right_c))
     else:
         return parse_tree.get_root_val()
 
@@ -81,22 +88,22 @@ def print_exp(tree: BinaryTree) -> str:
     s_val = ""
     if tree:
         s_val = print_exp(tree.get_left_child())
-        s_val = s_val + " " + str(tree.get_root_val())
+        s_val = s_val + str(tree.get_root_val())
         s_val = s_val + print_exp(tree.get_right_child())
     return s_val
 
 
 if __name__ == "__main__":
-    pt: BinaryTree = build_parse_tree(" ( True and False ) ")
-    print(evaluate(pt))
-    pt1: BinaryTree = build_parse_tree(" ( True or False ) ")
-    print(evaluate(pt1))
-    pt2: BinaryTree = build_parse_tree(" ( False and True ) ")
-    print(evaluate(pt2))
-    pt3: BinaryTree = build_parse_tree(" ( False or False ) ")
-    print(evaluate(pt3))
-    pt4: BinaryTree = build_parse_tree(" ( True and True ) ")
-    print(evaluate(pt4))
+    # pt: BinaryTree = build_parse_tree(" ( True and False ) ")
+    # print(evaluate(pt))
+    # pt1: BinaryTree = build_parse_tree(" ( True or False ) ")
+    # print(evaluate(pt1))
+    # pt2: BinaryTree = build_parse_tree(" ( False and True ) ")
+    # print(evaluate(pt2))
+    # pt3: BinaryTree = build_parse_tree(" ( False or False ) ")
+    # print(evaluate(pt3))
+    # pt4: BinaryTree = build_parse_tree(" ( True and True ) ")
+    # print(evaluate(pt4))
     pt5: BinaryTree = build_parse_tree(" ( not True ) ")
     print(evaluate(pt5))
     print("__")
